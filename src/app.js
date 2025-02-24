@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const statusRoutes = require('./routes/status.route');
 const uploadRoutes = require('./routes/upload.route');
+const imageRoutes = require('./routes/image.route');
 const { connectDB } = require('./config/db');
 
 dotenv.config();
@@ -12,6 +13,8 @@ const app = express();
 app.use(express.json());
 app.use('/status', statusRoutes);
 app.use('/upload', uploadRoutes);
+app.use('/status', statusRoutes);
+app.use('/image', imageRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("Connected to MongoDB"))

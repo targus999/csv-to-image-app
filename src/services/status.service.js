@@ -8,6 +8,19 @@ const getCsvStatus = async (id,req) => {
   return await CsvUpload.findOne({ requestId: id }).select("status").lean();
 };
 
+const getImageData = async (reqId,imgId) => {
+  const product =await CsvUpload.findOne({ requestId: reqId });
+  if(!product){
+    return null;
+  } 
+  
+  const imageData = product.products.flatMap((product) => 
+    product.images.filter((image) => image.imageId === imgId)
+  );
+  
+  return imageData;
+};
+
 const getCsvFile = async (id,req) => {
   try{
   let csv = await CsvUpload.findOne({ requestId: id });
@@ -32,5 +45,5 @@ catch(e){
 }
 };
 module.exports = {
-  getCsvStatus,getCsvFile
+  getCsvStatus,getCsvFile,getImageData
 };

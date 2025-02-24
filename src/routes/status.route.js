@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const getController = require('../controllers/status.controller');
+const statusController = require('../controllers/status.controller');
 
-router.get('/:requestid', getController.getCSV);
+router.get('/:requestid', statusController.getCSV);
 
 module.exports = router;

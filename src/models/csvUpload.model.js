@@ -15,6 +15,7 @@ const ProductSchema = new mongoose.Schema({
 const CsvUploadSchema = new mongoose.Schema({
   requestId: { type: String, required: true, unique: true }, // UUID for tracking requests
   products: [ProductSchema], // Array of product entries
+  webhookURL: { type: String, required: false }, // URL for sending notifications after completion
   status: { 
     type: String, 
     enum: ['pending', 'processing', 'completed', 'failed'], 

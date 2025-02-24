@@ -3,11 +3,12 @@ const { v4: uuidv4 } = require('uuid');
 const CsvUpload = require('../models/csvUpload.model'); // Import Mongoose model
 
 class UploadService {
-    static async saveCsvData(data, requestId) {
+    static async saveCsvData(data, requestId,webhookURL) {
 
         // Store data in the database
         const newUpload = new CsvUpload({
             requestId,
+            webhookURL,
             products: data.map(p => ({
                 serialNumber: p['S. No.'],
                 productName: p['Product Name'],

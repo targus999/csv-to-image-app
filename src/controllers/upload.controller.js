@@ -1,6 +1,7 @@
 const csv = require('csv-parser');
 const UploadService  = require('../services/upload.service');
 const { v4: uuidv4 } = require('uuid');
+const { WEB_HOOK_URL } = require('../config/dotenv.config');
 
 
 exports.getCSV = async (req, res) => {
@@ -8,7 +9,7 @@ exports.getCSV = async (req, res) => {
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });
     }
-
+    const webhookURL=WEB_HOOK_URL||null;
     const results = [];
 
     const stream = require('stream');
@@ -20,7 +21,7 @@ exports.getCSV = async (req, res) => {
       .on('data', (data) => results.push(data))
       .on('end', () => {
         const requestId = uuidv4();
-        UploadService.saveCsvData(results, requestId);
+        UploadService.saveCsvData(results, requestId, webhookURL);
         res.status(200).json({
           requestId,
           message: 'CSV file successfully parsed',

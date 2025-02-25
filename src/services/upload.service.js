@@ -18,7 +18,7 @@ class UploadService {
                 }))
             }))
         });
-
+        console.log("[DEBUG] CSV data saved successfully");
         await newUpload.save();
 
         // Spawn a worker thread for image processing

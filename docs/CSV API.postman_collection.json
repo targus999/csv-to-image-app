@@ -1,0 +1,52 @@
+{
+	"info": {
+		"_postman_id": "70395b8f-43aa-473d-950d-a9e43400e90c",
+		"name": "CSV API",
+		"description": "the csv file is passed to be processed.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "13754529"
+	},
+	"item": [
+		{
+			"name": "upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "postman-cloud:///1efeebc5-22b5-4a90-8e52-b2b72aa82ced"
+						}
+					]
+				},
+				"url": "http://localhost:3000/upload"
+			},
+			"response": []
+		},
+		{
+			"name": "status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/status/4acf8c20-4029-4692-bec2-fb2d8dbd3fc5",
+				"description": "return the current status of the processing and also return the csv file if its completed processing."
+			},
+			"response": []
+		},
+		{
+			"name": "image",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/image/d96d32e5-9d2f-425c-a35f-c4d290a97d45/d96d32e5-9d2f-425c-a35f-c4d290a97d45"
+			},
+			"response": []
+		}
+	]
+}

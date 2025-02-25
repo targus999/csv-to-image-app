@@ -33,10 +33,11 @@ const getCsvFile = async (id,req) => {
       'S. No': item.serialNumber,
       'Product Name': item.productName,
       'Input Image Urls': item.images.map((image) => image.inputUrl).join(','),
-      'Output Image Urls': item.images.map((image) => `${req.protocol}://${req.get("host")}/image/${id}/${image.imageId}`).join(',')
+      'Output Image Urls': item.images.map((image) => `${req.protocol}://${req.get("host")}/image/${id}/${image.imageId}`).join(', ')
     }
   });
-  console.log(jsonData);
+  console.log("[DEBUG] CSV data fetched successfully");
+  
   const parser = new Parser();
   return parser.parse(jsonData);
 }
